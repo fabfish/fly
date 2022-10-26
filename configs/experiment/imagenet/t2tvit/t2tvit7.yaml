@@ -20,7 +20,8 @@ seed: 1111
 
 trainer:
   accelerator: gpu
-  devices: 8
+  # devices: 8
+  devices: 1
   accumulate_grad_batches: ${div_up:${train.global_batch_size}, ${eval:${trainer.devices} * ${datamodule.batch_size}}}
   max_epochs: ${eval:${train.scheduler.t_initial} + ${train.cooldown_epochs}}
   precision: 32  # I get NaN loss at epoch 1 with t2t_vit_7 and precision=16
