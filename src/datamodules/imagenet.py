@@ -37,6 +37,9 @@ class ImagenetDataModule(LightningDataModule):
 
     def __init__(
         self,
+        # fish: add args
+        mixup,
+        batch_size_eval,
         data_dir: str,
         cache_dir: Optional[str] = None,
         image_size: int = 224,
@@ -63,6 +66,8 @@ class ImagenetDataModule(LightningDataModule):
         """
         super().__init__(*args, **kwargs)
 
+        self.mixup = mixup
+        self.batch_size_eval = batch_size_eval
         self.image_size = image_size
         self.dims = (3, self.image_size, self.image_size)
         self.data_dir = Path(data_dir).expanduser()
